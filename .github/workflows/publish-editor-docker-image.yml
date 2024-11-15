@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - searver@*
+      - server@*
 
 env:
   TAG_VERSION:
