@@ -4,7 +4,7 @@ const publicPath = process.env.public
 export default defineEventHandler(async (evt) => {
   const url = getRequestURL(evt)
   console.log(url.pathname)
-  if (url.pathname.includes('/auth')) {
+  if (!url.pathname.includes('/versions')) {
     return
   }
 
