@@ -4,9 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "pnpm -C packages/server start"
+    "serve": "pnpm -C packages/server start",
+    "release:server": "cd packages/server && bumpp --tag server@ --commit --push"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "bumpp": "^9.8.1"
+  }
 }
