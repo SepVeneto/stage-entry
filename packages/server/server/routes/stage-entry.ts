@@ -1,6 +1,6 @@
 import { Db } from "../db"
 
-const DOMAIN = ''
+const DOMAIN = process.env.domain
 
 export default defineEventHandler(async (evt) => {
   const db = new Db()

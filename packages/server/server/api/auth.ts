@@ -13,6 +13,7 @@ export default defineEventHandler(async (evt) => {
   await session.update({
     nonce,
   })
+  const publicPath = process.env.public
   // setCookie(evt, 'STAGE_ENTRY_SESSION', )
-  return sendRedirect(evt, '/versions', 302)
+  return sendRedirect(evt, publicPath + '/versions', 302)
 })

@@ -1,8 +1,10 @@
 import { v4 as uuidv4 } from 'uuid'
 
+const publicPath = process.env.public
 export default defineEventHandler(async (evt) => {
   const url = getRequestURL(evt)
-  if (url.pathname === '/auth') {
+  console.log(url.pathname)
+  if (url.pathname.includes('/auth')) {
     return
   }
 
@@ -14,6 +16,6 @@ export default defineEventHandler(async (evt) => {
   const _session = getCookie(evt, 'STAGE_ENTRY_SESSION')
   console.log(_session)
   if (!_session) {
-    return sendRedirect(evt, '/auth', 302)
+    return sendRedirect(evt, publicPath + '/auth', 302)
   }
 })
