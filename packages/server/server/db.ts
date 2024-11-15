@@ -3,15 +3,18 @@ import fs from 'node:fs'
 import path from 'node:path'
 import { v4 as uuidv4 } from 'uuid'
 
-const dbPath = path.resolve(process.cwd(), 'db.xml')
+const dbPath = path.resolve(process.cwd(), 'db/data.xml')
 const parser = new XMLParser()
 const builder = new XMLBuilder()
 
 const res = builder.build({
-  data: [],
-  tags: [],
+  data: [{ id: 0, version: 'stable', name: '稳定测试', tags: ['*'] }],
+  tags: ['*'],
 })
-fs.writeFileSync(dbPath, res)
+
+if (!fs.existsSync(dbPath) || !fs.readFileSync(dbPath).length) {
+  fs.writeFileSync(dbPath, res)
+}
 
 type Record = {
   id: string,
@@ -58,7 +61,7 @@ export class Db {
       const index = this.source.findIndex(item => item.id === data.id)
       this.source[index] = data as Record
     } else {
-      this.source.push({ ...data, id: uuidv4() })
+      this.source = [...this.source, { ...data, id: uuidv4() }]
     }
 
     const res = builder.build(this.data)
@@ -72,7 +75,7 @@ export class Db {
         return
       }
       if (this.tags) {
-        this.tags.push(tag)
+        this.tags = [...this.tags, tag]
       } else {
         this.tags = [tag]
       }
