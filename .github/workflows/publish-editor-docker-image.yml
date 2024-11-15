@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - v*
+      - searver@*
 
 env:
   TAG_VERSION:
@@ -48,7 +48,7 @@ jobs:
       #     format: 'YYYY-MM-DD-HH-mm-ss'
 
       - name: Get version
-        run: echo "TAG_VERSION=${GITHUB_REF#refs/*/v}" >> $GITHUB_ENV
+        run: echo "TAG_VERSION=${GITHUB_REF#refs/*/server@}" >> $GITHUB_ENV
         
       # https://github.com/docker/build-push-action
       - name: Build and push Docker image
