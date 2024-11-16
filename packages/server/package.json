@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .output/server/index.mjs",
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "cross-env public='' PASSWORD=veneto nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -14,6 +14,7 @@
   "dependencies": {
     "@element-plus/nuxt": "^1.1.0",
     "@nuxtjs/tailwindcss": "^6.12.2",
+    "cross-env": "^7.0.3",
     "fast-xml-parser": "^4.5.0",
     "nuxt": "^3.14.159",
     "uuid": "^11.0.2",

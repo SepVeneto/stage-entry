@@ -2,8 +2,10 @@ import { v4 as uuidv4 } from 'uuid'
 
 export default defineEventHandler(async (evt) => {
 
-  const res = readBody(evt)
-  console.log(res)
+  const res = await readBody(evt)
+  if (res.pwd !== process.env.PASSWORD) {
+    return
+  }
 
   const session = await useSession(evt, {
     name: 'STAGE_ENTRY_SESSION',
@@ -14,6 +16,5 @@ export default defineEventHandler(async (evt) => {
     nonce,
   })
   const publicPath = process.env.public
-  // setCookie(evt, 'STAGE_ENTRY_SESSION', )
-  return sendRedirect(evt, publicPath + '/versions', 302)
+  return publicPath + '/versions'
 })

@@ -1,10 +1,19 @@
-import { v4 as uuidv4 } from 'uuid'
+import { navigateTo } from "nuxt/app"
+
+
+const IGNORE_LIST = [
+  'distribute',
+  'auth',
+]
 
 const publicPath = process.env.public
 export default defineEventHandler(async (evt) => {
   const url = getRequestURL(evt)
-  console.log(url.pathname)
-  if (!url.pathname.includes('/versions')) {
+  const ignore = IGNORE_LIST.some(rule => {
+    const regRoute = new RegExp(`${publicPath}/${rule}`)
+    return regRoute.test(url.pathname)
+  })
+  if (ignore) {
     return
   }
 
@@ -12,10 +21,13 @@ export default defineEventHandler(async (evt) => {
     name: 'STAGE_ENTRY_SESSION',
     password: '70d42cfb-1cd2-462c-8f17-e3237d9027e9',
   })
-  console.log(session.data)
-  const _session = getCookie(evt, 'STAGE_ENTRY_SESSION')
-  console.log(_session)
-  if (!_session) {
-    return sendRedirect(evt, publicPath + '/auth', 302)
+  if (!session.data?.nonce) {
+    switch (evt.method) {
+      case 'POST':
+        setResponseStatus(evt, 401)
+        return 401
+      case 'GET':
+        return sendRedirect(evt, publicPath + '/auth' + `?redirect=${decodeURIComponent(url.pathname)}`, 401)
+    }
   }
 })

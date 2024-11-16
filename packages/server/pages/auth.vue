@@ -14,7 +14,8 @@
 <script setup lang="ts">
 const password = ref('')
 
-function onLogin() {
-  $fetch('/api/auth', { method: 'post', body: { pwd: password.value }})
+async function onLogin() {
+  const res = await $fetch('/api/auth', { method: 'post', body: { pwd: password.value }, redirect: 'follow' })
+  navigateTo({ path: res })
 }
 </script>

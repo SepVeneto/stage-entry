@@ -68,15 +68,15 @@
 
 const list = shallowRef<any[]>([])
 async function getVersions() {
-  const { data } = await useFetch('/api/versions')
-  list.value = data.value || []
+  const res = await useHttp<any[]>('/api/versions')
+  list.value = res
 }
-await getVersions()
+getVersions()
 
 const tags = shallowRef<any[]>([])
 async function getTags() {
-  const { data } = await useFetch('/api/tags')
-  tags.value = data.value || []
+  const res = await useHttp<any[]>('/api/tags')
+  tags.value = res
 }
 getTags()
 
@@ -106,14 +106,14 @@ function handleEdit(row) {
   show.value = true
 }
 async function handleDelete(row) {
-  await useFetch(`/api/versions/${row.id}`, { method: 'delete' })
+  await useHttp(`/api/versions/${row.id}`, { method: 'delete' })
   getVersions()
 }
 
 const formRef = useTemplateRef('formRef')
 async function handleSubmit() {
   await formRef.value?.validate()
-  await useFetch('/api/versions', { method: 'POST', body: form.value })
+  await useHttp('/api/versions', { method: 'POST', body: form.value })
   show.value = false
 
   getVersions()
