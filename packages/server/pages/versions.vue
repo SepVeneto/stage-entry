@@ -7,6 +7,7 @@
       <ElTableColumn label="版本" prop="version" />
       <ElTableColumn label="名称" prop="name" />
       <ElTableColumn label="访问标签" prop="tags" />
+      <ElTableColumn label="访问目标" prop="target" />
       <ElTableColumn label="操作">
         <template #default="{row}">
           <ElButton
@@ -25,17 +26,21 @@
       </ElTableColumn>
     </ElTable>
 
-    <ElDialog v-model="show">
+    <ElDialog v-model="show" width="550px">
       <ElForm
         ref="formRef"
         :model="form"
         :rules="rules"
+        label-width="80px"
       >
         <ElFormItem label="版本" prop="version">
           <ElInput v-model="form.version" />
         </ElFormItem>
         <ElFormItem label="名称" prop="name">
           <ElInput v-model="form.name" />
+        </ElFormItem>
+        <ElFormItem label="目标" prop="target">
+          <ElInput v-model="form.target" />
         </ElFormItem>
         <ElFormItem label="标签" prop="tags">
           <ElSelect
@@ -83,6 +88,7 @@ getTags()
 const rules = {
   version: { required: true, message: '必填' },
   name: { required: true, message: '必填' },
+  target: { required: true, message: '必填' },
   tags: { required: true, message: '必填' },
 }
 
@@ -91,6 +97,7 @@ const form = ref({
   tags: [],
   name: '',
   version: '',
+  target: '',
 })
 
 function handleCreate() {

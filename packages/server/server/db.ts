@@ -21,6 +21,7 @@ type Record = {
   version: string,
   name: string,
   tags: string[],
+  target: string,
 }
 type DbData = { data: Record | Record[], tags: string[] }
 

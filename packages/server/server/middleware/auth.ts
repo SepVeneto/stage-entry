@@ -3,10 +3,11 @@ import { navigateTo } from "nuxt/app"
 
 const IGNORE_LIST = [
   'distribute',
+  'auth',
   'api/auth',
 ]
 
-const publicPath = process.env.public
+const publicPath = process.env.BASE_URL
 export default defineEventHandler(async (evt) => {
   const url = getRequestURL(evt)
   const ignore = IGNORE_LIST.some(rule => {
