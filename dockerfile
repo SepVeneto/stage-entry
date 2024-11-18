@@ -17,4 +17,4 @@ RUN cd /app/packages/server && pnpm build
 
 VOLUME [ "/app/packages/server/db" ]
 
-CMD sh -c "cd /app/packages/server/ && NUXT_APP_BASE_URL=${public} node .output/server/index.mjs"
+CMD sh -c "cd /app/packages/server/ && NUXT_APP_BASE_URL=${BASE_URL} node .output/server/index.mjs"
