@@ -6,6 +6,7 @@ ENV HOST=0.0.0.0
 
 WORKDIR /app
 
+COPY ./packages/plugin/package.json /app/packages/plugin/
 COPY ./packages/server/package.json /app/packages/server/
 COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
 
