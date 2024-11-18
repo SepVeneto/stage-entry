@@ -1,7 +1,7 @@
 <template>
   <button
     ref="btnRef"
-    class="fixed w-10 h-10 rounded-full border flex justify-center items-center"
+    class="bg-white fixed w-10 h-10 rounded-full border flex justify-center items-center"
     :style="style"
     @click="handleClick"
   >

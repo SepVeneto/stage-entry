@@ -1,6 +1,3 @@
-import { navigateTo } from "nuxt/app"
-
-
 const IGNORE_LIST = [
   'distribute',
   'auth',

@@ -5,5 +5,12 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/',
   },
-  modules: ['@nuxtjs/tailwindcss', '@element-plus/nuxt']
+  modules: ['@nuxtjs/tailwindcss', '@element-plus/nuxt'],
+  vite: {
+    server: {
+      cors: {
+        origin: '*',
+      }
+    }
+  },
 })

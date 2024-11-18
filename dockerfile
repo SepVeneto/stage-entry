@@ -11,9 +11,13 @@ COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
 
 RUN npm i -g pnpm && pnpm i
 
-COPY ./packages/server /app/packages/server
+COPY ./packages /app/packages
 
-RUN cd /app/packages/server && pnpm build
+RUN cd /app/packages/plugin \
+&& pnpm build \
+&& cp dist ../server/public/plugin \
+&& cd /app/packages/server \
+&& pnpm build
 
 VOLUME [ "/app/packages/server/db" ]
 
