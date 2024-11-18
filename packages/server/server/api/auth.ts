@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 export default defineEventHandler(async (evt) => {
 
   const res = await readBody(evt)
+  console.log(res.pwd, process.env.PASSWORD)
   if (res.pwd !== process.env.PASSWORD) {
     return
   }
