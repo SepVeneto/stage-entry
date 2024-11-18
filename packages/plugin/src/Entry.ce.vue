@@ -64,8 +64,12 @@ function handleSubmit() {
   // TODO: 时间
   date.setTime(date.getTime() + 10000 * 24*3600*1000)
   cookie.set('Stage-Tag', tag.value, {
-    expires: date
+    path: '/',
+    expires: date,
   })
+
+  // @ts-expect-error: inject
+  window.location.href = window.STAGE_ENTRY_URL
 }
 </script>
 

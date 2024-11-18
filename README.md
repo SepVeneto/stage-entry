@@ -15,7 +15,10 @@ pnpm i @module-federation/enhanced
 
 2. 配置
 ```js
+// 插件地址
 window.STAGE_ENTRY_PLUGIN = 'http://localhost:3000/plugin/'
+// 网关地址
+window.STAGE_ENTRY_URL = 'http://localhost:3000/distribute'
 init({
   name: 'app1',
   remotes: [
