@@ -16,6 +16,5 @@ export default defineEventHandler(async (evt) => {
   await session.update({
     nonce,
   })
-  const publicPath = process.env.public
-  return publicPath + '/versions'
+  return 'versions'
 })
