@@ -14,6 +14,8 @@ RUN npm i -g pnpm && pnpm i
 
 COPY ./packages /app/packages
 
+RUN pnpm i
+
 RUN cd /app/packages/plugin \
 && pnpm build \
 && cp dist ../server/public/plugin \
