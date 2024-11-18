@@ -12,7 +12,8 @@ COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
 
 RUN npm i -g pnpm && pnpm i
 
-COPY ./packages /app/packages
+COPY ./packages/plugin /app/packages/plugin
+COPY ./packages/server /app/packages/server
 
 RUN pnpm i
 
