@@ -11,6 +11,7 @@ export default defineConfig({
     port: 9000,
   },
   build: {
+    outDir: '../server/public/plugin',
     target: 'chrome69',
     lib: {
       name: 'STAGE_ENTRY',

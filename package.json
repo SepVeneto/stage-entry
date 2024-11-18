@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "pnpm -C packages/server start",
+    "build:plugin": "pnpm -C packages/plugin build",
     "release:server": "cd packages/server && bumpp --tag server@ --commit --push"
   },
   "keywords": [],

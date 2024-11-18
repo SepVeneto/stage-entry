@@ -1,15 +1,15 @@
-FROM node:20.16.0 AS plugin
-ENV NODE_ENV=production
+# FROM node:20.16.0 AS plugin
+# ENV NODE_ENV=production
 
-WORKDIR /app
-COPY ./packages/plugin/package.json /app/packages/plugin/
-COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
+# WORKDIR /app
+# COPY ./packages/plugin/package.json /app/packages/plugin/
+# COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
 
-RUN npm i -g pnpm && pnpm i
+# RUN npm i -g pnpm && pnpm i
 
-COPY ./packages/plugin /app/packages/plugin
+# COPY ./packages/plugin /app/packages/plugin
 
-RUN cd /app/packages/plugin && pnpm build
+# RUN cd /app/packages/plugin && pnpm build
 
 
 FROM node:20.16.0 AS build
@@ -26,7 +26,7 @@ COPY ./pnpm-lock.yaml ./pnpm-workspace.yaml ./package.json /app/
 RUN npm i -g pnpm && pnpm i
 
 COPY ./packages/server /app/packages/server
-COPY --from=plugin /app/packages/plugin/dist /app/packages/server/public/plugin
+# COPY --from=plugin /app/packages/plugin/dist /app/packages/server/public/plugin
 
 RUN cd /app/packages/server && pnpm build
 
