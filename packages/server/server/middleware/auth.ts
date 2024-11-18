@@ -3,7 +3,7 @@ import { navigateTo } from "nuxt/app"
 
 const IGNORE_LIST = [
   'distribute',
-  'auth',
+  'api/auth',
 ]
 
 const publicPath = process.env.public
