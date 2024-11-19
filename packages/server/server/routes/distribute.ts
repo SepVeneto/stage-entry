@@ -6,6 +6,8 @@ export default defineEventHandler(async (evt) => {
   const db = new Db()
   const cookies = parseCookies(evt)
   const tag = cookies['Stage-Tag']
+  console.log('params', evt.context.params)
+  console.log('query', getQuery(evt))
   if (!tag) {
     return await sendRedirect(evt, `${DOMAIN}/stage/stable`, 302)
   }
