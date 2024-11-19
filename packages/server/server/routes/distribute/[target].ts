@@ -4,6 +4,8 @@ const DOMAIN = process.env.DOMAIN
 
 export default defineEventHandler(async (evt) => {
   const target = evt.context.params?.target || ''
+  console.log('params', evt.context.params)
+  console.log('query', getQuery(evt))
 
   const db = new Db()
   const cookies = parseCookies(evt)
