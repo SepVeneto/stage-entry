@@ -40,7 +40,8 @@ export class Db {
 
   get source() {
     const res = this.data.data
-    return Array.isArray(res) ? res : [res]
+    const list = Array.isArray(res) ? res : [res]
+    return list.map(item => ({ ...item, tags: Array.isArray(item.tags) ? item.tags : [item.tags]}))
   }
   set source(val) {
     this.data.data = val
