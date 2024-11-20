@@ -13,17 +13,17 @@ export default defineEventHandler(async (evt) => {
   const cookies = parseCookies(evt)
   const tag = cookies['Stage-Tag']
   if (!tag) {
-    const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}`, query)
+    const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}/`, query)
     return await sendRedirect(evt, url, 302)
   }
 
   const res = db.findByTag(tag)
   if (!res) {
-    const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}`, query)
+    const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}/`, query)
     return await sendRedirect(evt, url, 302)
   }
   const version = normalizeVersion(res.version)
-  const url = normalizeUrl(`${DOMAIN}/stage/${version}/${target}`, query)
+  const url = normalizeUrl(`${DOMAIN}/stage/${version}/${target}/`, query)
   return await sendRedirect(evt, url, 302)
 })
 
