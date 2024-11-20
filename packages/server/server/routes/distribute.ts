@@ -31,5 +31,5 @@ function normalizeVersion(version: string) {
 }
 
 function normalizeUrl(url: string, query: Record<string, any>) {
-  return `${url}?${stringifyQuery(query)}`
+  return [url, stringifyQuery(query)].filter(item => !!item).join('?')
 }
