@@ -66,20 +66,18 @@
 </template>
 
 <script setup lang="ts">
+import type { UnwrapRef } from 'vue';
 
-const list = shallowRef<any[]>([])
+
+const res = await useAsyncData(() => request<any[]>('/api/versions'))
+const list = shallowRef<any[]>(res.data.value || [])
+
 async function getVersions() {
-  const res = await useHttp<any[]>('/api/versions')
+  const res = await request<any[]>('/api/versions')
   list.value = res
 }
-getVersions()
 
-const tags = shallowRef<any[]>([])
-async function getTags() {
-  const res = await useHttp<any[]>('/api/tags')
-  tags.value = res
-}
-getTags()
+const tags = shallowRef<any[]>((await useAsyncData(() => request<any[]>('/api/tags'))).data.value || [])
 
 const rules = {
   version: { required: true, message: '必填' },
@@ -97,24 +95,26 @@ const form = ref({
 function handleCreate() {
   show.value = true
   form.value = {
+    name: '',
+    version: '',
     tags: [],
   }
 }
 
 
-function handleEdit(row) {
+function handleEdit(row: UnwrapRef<typeof form>) {
   form.value = row
   show.value = true
 }
-async function handleDelete(row) {
-  await useHttp(`/api/versions/${row.id}`, { method: 'delete' })
+async function handleDelete(row: { id: string }) {
+  await request(`/api/versions/${row.id}`, { method: 'delete' })
   getVersions()
 }
 
 const formRef = useTemplateRef('formRef')
 async function handleSubmit() {
   await formRef.value?.validate()
-  await useHttp('/api/versions', { method: 'POST', body: form.value })
+  await request('/api/versions', { method: 'POST', body: form.value })
   show.value = false
 
   getVersions()

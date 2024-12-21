@@ -58,11 +58,13 @@ export class Db {
   }
 
   updateData(data: Omit<Record, 'id'> & { id?: string }) {
+    const list = [...this.source]
     if (data.id) {
-      const index = this.source.findIndex(item => item.id === data.id)
-      this.source[index] = data as Record
+      const index = list.findIndex(item => item.id === data.id)
+      list[index] = data as Record
+      this.source = list
     } else {
-      this.source = [...this.source, { ...data, id: uuidv4() }]
+      this.source = [...list, { ...data, id: uuidv4() }]
     }
 
     const res = builder.build(this.data)
@@ -87,8 +89,10 @@ export class Db {
   }
 
   deleteData(id: string) {
-    const index = this.source.findIndex(item => item.id === id)
-    this.source.splice(index, 1)
+    const list = [...this.source]
+    const index = list.findIndex(item => item.id === id)
+    list.splice(index, 1)
+    this.source = list
 
     const res = builder.build(this.data)
     fs.writeFileSync(dbPath, res)
