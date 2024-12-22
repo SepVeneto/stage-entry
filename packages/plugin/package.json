@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "playground": "cd playground/vite && pnpm dev",
     "build": "vite build",
     "preview": "vite preview"
   },

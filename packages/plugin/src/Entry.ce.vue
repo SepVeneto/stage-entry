@@ -1,7 +1,7 @@
 <template>
   <button
     ref="btnRef"
-    class="bg-white fixed w-10 h-10 rounded-full border flex justify-center items-center"
+    class="bg-white fixed w-10 h-10 rounded-full border flex justify-center items-center touch-none"
     :style="style"
     @click="handleClick"
   >
@@ -28,6 +28,8 @@
       >切换</button>
     </div>
   </Transition>
+
+  <Toast />
 </template>
 
 <script lang="ts" setup>
@@ -35,6 +37,7 @@ import { ref, watch } from 'vue';
 import Icon from './Icon.vue'
 import { onClickOutside, useDraggable } from '@vueuse/core';
 import { useCookies } from '@vueuse/integrations/useCookies';
+import Toast from './Toast.ce.vue';
 
 const modelRef = ref()
 
@@ -73,6 +76,6 @@ function handleSubmit() {
 }
 </script>
 
-<style scoped>
+<style >
 @import "./style.css";
 </style>

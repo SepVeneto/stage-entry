@@ -1,5 +1,6 @@
 import { defineCustomElement } from 'vue'
 import EntryCe from './Entry.ce.vue'
+import './style.css'
 
 const EntryElement = defineCustomElement(EntryCe)
 
