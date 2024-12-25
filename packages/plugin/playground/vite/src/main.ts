@@ -17,5 +17,8 @@ init({
   ]
 })
 
+window.__STAGE_ENTRY__ = {
+  duration: 1000,
+}
 loadRemote('entry/init')
 

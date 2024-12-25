@@ -30,5 +30,16 @@ init({
   ]
 })
 
+/* 可选配置项
+window.__STAGE_ENTRY__ = {
+  duration: 1000,
+}
+*/
 loadRemote('app/init')
 ```
+
+### 配置项
+
+| 名称 | 类型 | 默认值 | 说明 |
+| :-- | :-- | :------ | :--- |
+| duration | number | 3000 | 单位：ms，标签提示显示的时间 |

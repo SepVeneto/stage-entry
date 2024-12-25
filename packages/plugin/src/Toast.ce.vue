@@ -7,11 +7,7 @@
 		    role="alert">
 		    <div
 			    class="inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-blue-500 bg-blue-100 rounded-lg dark:bg-blue-800 dark:text-blue-200">
-			    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-				    <path fill-rule="evenodd"
-					    d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z"
-					    clip-rule="evenodd"></path>
-			    </svg>
+          <svg t="1735118438317" class="w-5 h-5" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5091" width="200" height="200"><path d="M463.6416 161.28a44.7552 44.7552 0 0 1 40.4032 12.2752l393.7216 393.7152a44.8 44.8 0 0 1 0 63.36l-262.4832 262.4768a44.8 44.8 0 0 1-63.36 0L178.2208 499.3856a44.7232 44.7232 0 0 1-12.8-37.0944V212.4864a51.2 51.2 0 0 1 51.2-51.2h247.0272zM381.856 359.104c24.9984-24.9984 24.9984-65.5232 0-90.5152-24.992-24.992-65.5168-24.992-90.5088 0-24.992 24.992-24.992 65.5168 0 90.5088 24.992 24.992 65.5168 24.992 90.5088 0z" fill="#59AAFF" p-id="5092"></path></svg>
 		    </div>
 		    <div class="ml-3 text-sm font-normal">{{message}}</div>
 	    </div>
@@ -32,8 +28,20 @@ onMounted(() => {
   message.value = '当前环境标签：' + (tag || '稳定测试')
   setTimeout(() => {
     show.value = false
-  }, 1800)
+  }, config.duration)
 })
+
+let config = {
+  duration: 3000,
+}
+loadConfig()
+function loadConfig() {
+  const customConfig = window.__STAGE_ENTRY__ || {}
+  config = {
+    ...config,
+    ...customConfig,
+  }
+}
 </script>
 
 <style>
