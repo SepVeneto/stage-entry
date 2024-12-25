@@ -26,6 +26,11 @@ onMounted(() => {
   show.value = true
   const tag = cookie.get('Stage-Tag')
   message.value = '当前环境标签：' + (tag || '稳定测试')
+  console.log(
+    `%cinfo`,
+    "color: #409EFF; font-weight: bold ; padding: 4px;",
+    message.value
+  )
   setTimeout(() => {
     show.value = false
   }, config.duration)
