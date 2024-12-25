@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node .output/server/index.mjs",
     "build": "nuxt build",
-    "dev": "cross-env BASE_URL='' cross-env PASSWORD=veneto cross-env DOMAIN=https://syb-test.rxlpzj.com nuxt dev",
+    "dev": "cross-env BASE_URL='' cross-env PASSWORD=veneto cross-env DOMAIN=http://localhost:8080 nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
