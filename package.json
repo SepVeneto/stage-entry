@@ -6,7 +6,10 @@
   "scripts": {
     "serve": "pnpm -C packages/server start",
     "build:plugin": "pnpm -C packages/plugin build",
-    "release:server": "cd packages/server && bumpp --tag server@ --commit --push"
+    "tag:server": "cd packages/server && bumpp --tag server@ --commit --push",
+    "tag:plugin": "cd packages/plugin && bumpp --no-commit --no-tag",
+    "release:server": "pnpm build:plugin && pnpm tag:server",
+    "gen:plugin": "pnpm build:plugin && pnpm tag:plugin"
   },
   "keywords": [],
   "author": "",
