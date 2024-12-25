@@ -1,0 +1,1 @@
+let t,n=(async()=>{t={"./init":async()=>{const a=await import("./stage-entry-plugin.js"),e={};return Object.assign(e,a),Object.defineProperty(e,"__esModule",{value:!0,enumerable:!1}),e}}})();export{n as __tla,t as default};
