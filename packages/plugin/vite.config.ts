@@ -13,6 +13,7 @@ export default defineConfig({
   build: {
     outDir: '../server/public/plugin',
     target: 'chrome69',
+    emptyOutDir: true,
     lib: {
       name: 'STAGE_ENTRY',
       entry: './src/init.ts',

@@ -1,11 +1,9 @@
 export default defineNuxtPlugin((nuxtApp) => {
   const route = useRoute()
   const config = useRuntimeConfig()
-  const baseUrl = (import.meta.client ? (config.public.baseUrl) : config.baseUrl) as string
   const api = $fetch.create({
-    baseURL: '/stage-entry',
+    baseURL: config.app.baseURL,
     onRequest({ request, options, error }) {
-      console.log(config, request)
       const cookie = useRequestHeader('cookie')
       cookie && options.headers.set('cookie', cookie)
     },
