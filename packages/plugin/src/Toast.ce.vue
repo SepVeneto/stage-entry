@@ -18,10 +18,12 @@
 <script lang="ts" setup>
 import { useCookies } from '@vueuse/integrations/useCookies';
 import { onMounted, ref } from 'vue';
+import { useConfig } from './hooks';
 
 const show = ref(false)
 const message = ref('')
 const cookie = useCookies()
+const config = useConfig()
 onMounted(() => {
   show.value = true
   const tag = cookie.get('Stage-Tag')
@@ -35,18 +37,6 @@ onMounted(() => {
     show.value = false
   }, config.duration)
 })
-
-let config = {
-  duration: 3000,
-}
-loadConfig()
-function loadConfig() {
-  const customConfig = window.__STAGE_ENTRY__ || {}
-  config = {
-    ...config,
-    ...customConfig,
-  }
-}
 </script>
 
 <style>

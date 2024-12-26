@@ -1,11 +1,11 @@
 <template>
   <button
     ref="btnRef"
-    class="bg-white fixed w-10 h-10 rounded-full border flex justify-center items-center touch-none"
-    :style="style"
+    class="bg-white fixed w-20 h-20 rounded-full border flex justify-center items-center touch-none shadow-lg"
+    :style="buttonStyle"
     @click="handleClick"
   >
-    <Icon class=" text-lg" />
+    <Icon class=" text-2xl" />
   </button>
 
   <Transition>
@@ -33,19 +33,24 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import Icon from './Icon.vue'
 import { onClickOutside, useDraggable } from '@vueuse/core';
 import { useCookies } from '@vueuse/integrations/useCookies';
 import Toast from './Toast.ce.vue';
+import { useConfig } from './hooks';
 
 const modelRef = ref()
 
 const cookie = useCookies()
 
 const btnRef = ref()
+const config = useConfig()
 const { style } = useDraggable(btnRef, {
-  initialValue: { x: window.innerWidth - 50, y: window.innerHeight - 50 }
+  initialValue: { x: window.innerWidth - 100, y: window.innerHeight - 100 }
+})
+const buttonStyle = computed(() => {
+  return `${style.value}z-index: ${config.zIndex};`
 })
 
 onClickOutside(modelRef, () => {
