@@ -34,7 +34,7 @@ function normalizeVersion(version: string) {
 
 function normalizeUrl(url: string, query: Record<string, any>) {
   // 跳过目录检索导致的结尾添加'/'
-  const _url = url.includes('#') ? url : `${url}/`
+  const _url = !url.includes('#') && url.endsWith('/') ? `${url}/` : url
   return [_url, stringifyQuery(query)].filter(item => !!item).join('?')
 }
 
