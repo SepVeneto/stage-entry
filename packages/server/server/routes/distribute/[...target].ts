@@ -14,17 +14,17 @@ export default defineEventHandler(async (evt) => {
   const tag = cookies['Stage-Tag']
   if (!tag) {
     const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}`, query)
-    return await sendRedirect(evt, url, 302)
+    return await sendRedirect(evt, url, 301)
   }
 
   const res = db.findByTag(tag)
   if (!res) {
     const url = normalizeUrl(`${DOMAIN}/stage/stable/${target}`, query)
-    return await sendRedirect(evt, url, 302)
+    return await sendRedirect(evt, url, 301)
   }
   const version = normalizeVersion(res.version)
   const url = normalizeUrl(`${DOMAIN}/stage/${version}/${target}`, query)
-  return await sendRedirect(evt, url, 302)
+  return await sendRedirect(evt, url, 301)
 })
 
 
@@ -33,6 +33,8 @@ function normalizeVersion(version: string) {
 }
 
 function normalizeUrl(url: string, query: Record<string, any>) {
-  return [url, stringifyQuery(query)].filter(item => !!item).join('?')
+  // 跳过目录检索导致的结尾添加'/'
+  const _url = url.includes('#') ? url : `${url}/`
+  return [_url, stringifyQuery(query)].filter(item => !!item).join('?')
 }
 

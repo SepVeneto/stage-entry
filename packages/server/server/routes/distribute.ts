@@ -12,17 +12,17 @@ export default defineEventHandler(async (evt) => {
 
   if (!tag) {
     const url = normalizeUrl(`${DOMAIN}/stage/stable/`, query)
-    return await sendRedirect(evt, url, 302)
+    return await sendRedirect(evt, url, 301)
   }
 
   const res = db.findByTag(tag)
   if (!res) {
     const url = normalizeUrl(`${DOMAIN}/stage/stable/`, query)
-    return await sendRedirect(evt, url, 302)
+    return await sendRedirect(evt, url, 301)
   }
   const version = normalizeVersion(res.version)
   const url = normalizeUrl(`${DOMAIN}/stage/${version}/`, query)
-  return await sendRedirect(evt, url, 302)
+  return await sendRedirect(evt, url, 301)
 })
 
 
